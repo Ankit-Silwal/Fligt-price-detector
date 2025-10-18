@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flight Price Detector</title>  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="main-container">
+    <!-- Header -->
+    <div class="flexbox-container">
+      <img class="logo" src="../assets/Logo.png" alt="Logo">
+      <select id="currency" name="currency">
+        <option value="usd">USD</option>
+        <option value="eur" selected>EUR</option> 
+        <option value="inr">INR</option>
+        <option value="gbp">GBP</option>
+      </select>
+    </div>
+
+    <!-- Content Box -->
+    <div class="content-container">
+      <p class="title">Flight Tickets:</p>
+      
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="choice" value="oneway" checked>
+          One Way
+        </label>
+        <label>
+          <input type="radio" name="choice" value="twoway">
+          Two Way
+        </label>
+      </div>
+
+      <input class="placeholder-box" type="text" placeholder="From">
+      <input class="placeholder-box" type="text" placeholder="To">
+
+      <div class="date-box-container">
+        <input class="date-box" type="date" value="">
+        <input class="date-box" type="date" value="">
+      </div>        
+
+      <input class="placeholder-box" type="email" placeholder="Your Email">
+      <input class="placeholder-box" type="tel" placeholder="Your Phone Number">
+
+      <!-- Expected Price -->
+      <input class="placeholder-box" type="text" placeholder="Expected Price">
+    </div>
+
+    <!-- Notify Me Button -->
+    <div class="button-container">
+      <button class="notify-btn">Notify Me</button>
+    </div>
+  </div>
+</body>
+</html>
