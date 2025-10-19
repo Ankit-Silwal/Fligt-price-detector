@@ -28,52 +28,33 @@ html, body {
   align-items: center;
 }
 
-.logo {
+/* .logo {
   height: 60px;
   width: 60px;
-}
+} */
 
-#currency {
+/* #currency {
   height: 35px;
   padding: 5px 10px;
   font-size: 14px;
-}
+} */
 
-/* Content Box */
-.content-container {
-  position: absolute;
-  top: 140px; /* gap from header */
-  left: 0;
-  right: 0;
-  margin: auto;
-  height: auto;
-  min-height: 500px;
-  width: 60%;
-  max-width: 800px;
-  padding: 30px 20px;
-  background-color: #fff8dc;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
 
 /* Title */
-.title {
+/* .title {
   font-size: 20px;
   font-weight: bold;
-}
+} */
 
 /* Radio Buttons */
-.radio-group {
+/* .radio-group {
   display: flex;
   gap: 20px;
   font-size: 16px;
-}
+} */
 
 /* Input Fields */
-.placeholder-box,
+/* .placeholder-box,
 .date-box {
   padding: 10px;
   font-size: 14px;
@@ -86,7 +67,7 @@ html, body {
 .date-box-container {
   display: flex;
   gap: 10%;
-}
+} */
 
 /* Button */
 .button-container {
@@ -96,7 +77,7 @@ html, body {
   margin-top: 20px;
 }
 
-.notify-btn {
+/* .notify-btn {
   padding: 18px 50px;
   font-size: 18px;
   font-weight: bold;
@@ -112,7 +93,7 @@ html, body {
 .notify-btn:hover {
   background-color: #45a049;
   transform: scale(1.05);
-}
+} */
 
 /* Responsive */
 @media screen and (max-width: 768px) {
@@ -121,12 +102,12 @@ html, body {
     padding: 20px;
   }
 
-  .flexbox-container {
+  /* .flexbox-container {
     width: 95%;
     flex-direction: column;
     gap: 15px;
     align-items: flex-start;
-  }
+  } */
 
   .date-box-container {
     flex-direction: column;

@@ -1,0 +1,43 @@
+.content-container {
+  position: absolute;
+  top: 140px; /* gap from header */
+  left: 0;
+  right: 0;
+  margin: auto;
+  height: auto;
+  min-height: 500px;
+  width: 60%;
+  max-width: 800px;
+  padding: 30px 20px;
+  background-color: #fff8dc;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.radio-group {
+  display: flex;
+  gap: 20px;
+  font-size: 16px;
+}
+
+.placeholder-box,
+.date-box {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.date-box-container {
+  display: flex;
+  gap: 10%;
+}

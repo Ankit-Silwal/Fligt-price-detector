@@ -1,0 +1,25 @@
+.notify-btn {
+  padding: 18px 50px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.notify-btn:hover {
+  background-color: #45a049;
+  transform: scale(1.05);
+}
+
+
+.button-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}

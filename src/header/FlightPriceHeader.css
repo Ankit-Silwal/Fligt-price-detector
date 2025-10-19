@@ -1,0 +1,15 @@
+ .flexbox-container {
+    width: 95%;
+    flex-direction: row;
+    gap: 15px;
+    align-items: space-between;
+  }
+.logo {
+  height: 60px;
+  width: 60px;
+}
+#currency {
+  height: 35px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
