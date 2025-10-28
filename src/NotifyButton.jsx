@@ -1,8 +1,15 @@
 import './NotifyButton.css'
-export function NotifyButton(){
+
+export function NotifyButton({ onSearch, loading }){
   return(
     <div className="button-container">
-        <button className="notify-btn">Notify Me</button>
+        <button 
+          className="notify-btn" 
+          onClick={onSearch}
+          disabled={loading}
+        >
+          {loading ? 'Searching...' : 'Search Flights'}
+        </button>
       </div>
   )
 }

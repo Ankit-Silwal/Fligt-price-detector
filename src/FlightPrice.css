@@ -28,48 +28,13 @@ html, body {
   align-items: center;
 }
 
-/* .logo {
-  height: 60px;
-  width: 60px;
-} */
 
-/* #currency {
-  height: 35px;
-  padding: 5px 10px;
-  font-size: 14px;
-} */
-
-
-/* Title */
-/* .title {
-  font-size: 20px;
-  font-weight: bold;
-} */
-
-/* Radio Buttons */
-/* .radio-group {
-  display: flex;
-  gap: 20px;
-  font-size: 16px;
-} */
-
-/* Input Fields */
-/* .placeholder-box,
-.date-box {
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  width: 100%;
-}
-
-/* Date Boxes side by side */
 .date-box-container {
   display: flex;
   gap: 10%;
 } */
 
-/* Button */
+Button
 .button-container {
   width: 100%;
   display: flex;
@@ -77,37 +42,14 @@ html, body {
   margin-top: 20px;
 }
 
-/* .notify-btn {
-  padding: 18px 50px;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  border-radius: 10px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  transition: transform 0.2s ease, background-color 0.3s ease;
-}
 
-.notify-btn:hover {
-  background-color: #45a049;
-  transform: scale(1.05);
-} */
-
-/* Responsive */
 @media screen and (max-width: 768px) {
   .content-container {
     width: 90%;
     padding: 20px;
   }
 
-  /* .flexbox-container {
-    width: 95%;
-    flex-direction: column;
-    gap: 15px;
-    align-items: flex-start;
-  } */
+
 
   .date-box-container {
     flex-direction: column;

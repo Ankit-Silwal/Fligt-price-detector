@@ -1,32 +1,33 @@
 import './ContentContainer.css'
-export function ContentContainer(){
+import { RadioGroup } from './inputs/RadioGroup'
+import { DateBox } from './inputs/DateBox'
+import { LoginCredentials } from './inputs/LoginCredentials'
+
+export function ContentContainer({ flightData, setFlightData }){
   return(
     <div className="content-container">
         <p className="title">Flight Tickets:</p>
-
-        <div className="radio-group">
-          <label>
-            <input type="radio" name="choice" value="oneway" defaultChecked />
-            One Way
-          </label>
-          <label>
-            <input type="radio" name="choice" value="twoway" />
-            Two Way
-          </label>
-        </div>
-
-        <input className="placeholder-box" type="text" placeholder="From" />
-        <input className="placeholder-box" type="text" placeholder="To" />
-
-        <div className="date-box-container">
-          <input className="date-box" type="date" />
-          <input className="date-box" type="date" />
-        </div>
-
-        <input className="placeholder-box" type="email" placeholder="Your Email" />
-        <input className="placeholder-box" type="tel" placeholder="Your Phone Number" />
-        <input className="placeholder-box" type="text" placeholder="Expected Price" />
+        <RadioGroup 
+          tripType={flightData.tripType}
+          setTripType={(type) => setFlightData({ ...flightData, tripType: type })}
+          origin={flightData.origin}
+          destination={flightData.destination}
+          setOrigin={(origin) => setFlightData({ ...flightData, origin })}
+          setDestination={(destination) => setFlightData({ ...flightData, destination })}
+        />
+        <DateBox 
+          departureDate={flightData.departureDate}
+          returnDate={flightData.returnDate}
+          setDepartureDate={(date) => setFlightData({ ...flightData, departureDate: date })}
+          setReturnDate={(date) => setFlightData({ ...flightData, returnDate: date })}
+          tripType={flightData.tripType}
+        />
+        <LoginCredentials 
+          adults={flightData.adults}
+          setAdults={(adults) => setFlightData({ ...flightData, adults })}
+          currency={flightData.currency}
+          setCurrency={(currency) => setFlightData({ ...flightData, currency })}
+        />
       </div>
-
   )
 }

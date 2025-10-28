@@ -1,0 +1,12 @@
+.date-box {
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+}
+
+.date-box-container {
+  display: flex;
+  gap: 10%;
+}
