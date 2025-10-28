@@ -4,7 +4,6 @@ import { ContentContainer } from './ContentContainer';
 import { FlightPriceHeader } from './header/FlightPriceHeader';
 import { NotifyButton } from './NotifyButton';
 import { searchFlightOffers } from './services/amadeusService';
-// import logo from './assets/Logo.png'
 
 export function FlightPrice() {
   const [flightData, setFlightData] = useState({
@@ -22,28 +21,24 @@ export function FlightPrice() {
   const [error, setError] = useState(null);
 
   const handleSearch = async () => {
-    // Validate inputs
     if (!flightData.origin || !flightData.destination || !flightData.departureDate) {
       setError('Please fill in all required fields (Origin, Destination, and Departure Date)');
       setFlights([]);
       return;
     }
 
-    // Validate airport codes (should be 3 letters)
     if (flightData.origin.length !== 3 || flightData.destination.length !== 3) {
       setError('Airport codes must be exactly 3 letters (e.g., NYC, LAX, LON)');
       setFlights([]);
       return;
     }
 
-    // Validate return date for round trips
     if (flightData.tripType === 'twoway' && !flightData.returnDate) {
       setError('Please select a return date for round trip');
       setFlights([]);
       return;
     }
 
-    // Validate dates
     const today = new Date();
     today.setHours(0, 0, 0, 0);
     const departure = new Date(flightData.departureDate);
@@ -121,11 +116,15 @@ export function FlightPrice() {
           textAlign: 'center',
           fontSize: '16px',
           fontWeight: '500',
-          boxShadow: '0 2px 4px rgba(211, 47, 47, 0.1)'
+          boxShadow: '0 2px 4px rgba(211, 47, 47, 0.1)',
+          position: 'relative',
+          zIndex: 1000
         }}>
           ⚠️ {error}
         </div>
       )}
+      
+      <Footer />
       
       {loading && (
         <div style={{ 
@@ -188,16 +187,16 @@ function FlightCard({ flight }) {
       marginBottom: '15px',
       backgroundColor: 'white',
       boxShadow: '0 3px 8px rgba(0,0,0,0.08)',
-      transition: 'transform 0.2s, box-shadow 0.2s',
+      transition: 'box-shadow 0.2s, border-color 0.2s',
       cursor: 'pointer'
     }}
     onMouseEnter={(e) => {
-      e.currentTarget.style.transform = 'translateY(-2px)';
       e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.15)';
+      e.currentTarget.style.borderColor = '#1976d2';
     }}
     onMouseLeave={(e) => {
-      e.currentTarget.style.transform = 'translateY(0)';
       e.currentTarget.style.boxShadow = '0 3px 8px rgba(0,0,0,0.08)';
+      e.currentTarget.style.borderColor = '#e0e0e0';
     }}
     >
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
@@ -248,6 +247,23 @@ function FlightCard({ flight }) {
           {currency} {parseFloat(price).toFixed(2)}
         </div>
       </div>
+    </div>
+  );
+}
+
+function Footer() {
+  return (
+    <div style={{
+      textAlign: 'center',
+      padding: '10px',
+      marginTop: '10px',
+      fontSize: '10px',
+      color: '#666',
+      backgroundColor: 'transparent'
+    }}>
+      <p style={{ margin: '0', backgroundColor: 'transparent' }}>
+        🎓 A project by <strong style={{ backgroundColor: 'transparent' }}>Ankit</strong> & <strong style={{ backgroundColor: 'transparent' }}>Anish</strong> | Sharda University
+      </p>
     </div>
   );
 }

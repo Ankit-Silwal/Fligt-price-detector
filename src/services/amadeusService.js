@@ -1,13 +1,10 @@
-// Amadeus API Service
 const AMADEUS_API_KEY = import.meta.env.VITE_AMADEUS_API_KEY;
 const AMADEUS_API_SECRET = import.meta.env.VITE_AMADEUS_API_SECRET;
 
 let accessToken = null;
 let tokenExpiry = null;
 
-// Get access token
 async function getAccessToken() {
-  // Check if we have a valid token
   if (accessToken && tokenExpiry && Date.now() < tokenExpiry) {
     return accessToken;
   }
@@ -33,7 +30,6 @@ async function getAccessToken() {
 
     const data = await response.json();
     accessToken = data.access_token;
-    // Set expiry to 30 minutes from now (tokens typically last 30 mins)
     tokenExpiry = Date.now() + (data.expires_in - 60) * 1000;
     
     return accessToken;
@@ -43,7 +39,6 @@ async function getAccessToken() {
   }
 }
 
-// Search for flight offers
 export async function searchFlightOffers({
   originLocationCode,
   destinationLocationCode,
@@ -69,7 +64,6 @@ export async function searchFlightOffers({
       max: max.toString(),
     });
 
-    // Add return date for round trips
     if (returnDate) {
       params.append('returnDate', returnDate);
     }
@@ -98,7 +92,6 @@ export async function searchFlightOffers({
   }
 }
 
-// Get airport/city suggestions
 export async function searchLocations(keyword) {
   try {
     const token = await getAccessToken();

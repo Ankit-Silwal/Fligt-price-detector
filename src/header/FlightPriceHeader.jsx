@@ -7,7 +7,6 @@ export function FlightPriceHeader(){
   
   const handleLogoClick = () => {
     navigate('/');
-    // Refresh the page to reset the form
     window.location.reload();
   };
   
