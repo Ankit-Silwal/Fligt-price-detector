@@ -178,6 +178,60 @@ function FlightCard({ flight }) {
   const formatDuration = (dur) => {
     return dur.replace('PT', '').replace('H', 'h ').replace('M', 'm');
   };
+
+  // Get airline name from carrier code
+  const getAirlineName = (code) => {
+    const airlines = {
+      'AA': 'American Airlines',
+      'DL': 'Delta Air Lines',
+      'UA': 'United Airlines',
+      'BA': 'British Airways',
+      'LH': 'Lufthansa',
+      'AF': 'Air France',
+      'KL': 'KLM',
+      'EK': 'Emirates',
+      'QR': 'Qatar Airways',
+      'SQ': 'Singapore Airlines',
+      'AI': 'Air India',
+      'UK': 'Vistara',
+      '6E': 'IndiGo',
+      'SG': 'SpiceJet',
+    };
+    return airlines[code] || code;
+  };
+
+  // Generate booking links for multiple platforms
+  const generateBookingLinks = () => {
+    const origin = firstSegment.departure.iataCode;
+    const destination = lastSegment.arrival.iataCode;
+    const departureDate = firstSegment.departure.at.split('T')[0];
+    
+    return [
+      {
+        name: 'Google Flights',
+        url: `https://www.google.com/travel/flights?q=flights%20from%20${origin}%20to%20${destination}%20on%20${departureDate}`,
+        icon: '🔍'
+      },
+      {
+        name: 'Skyscanner',
+        url: `https://www.skyscanner.com/transport/flights/${origin}/${destination}/${departureDate.replace(/-/g, '')}/?adultsv2=1&cabinclass=economy&childrenv2=&inboundaltsenabled=false&outboundaltsenabled=false&preferdirects=false&ref=home&rtn=0`,
+        icon: '✈️'
+      },
+      {
+        name: 'Kayak',
+        url: `https://www.kayak.com/flights/${origin}-${destination}/${departureDate}?sort=bestflight_a`,
+        icon: '🛫'
+      },
+      {
+        name: 'Expedia',
+        url: `https://www.expedia.com/Flights-Search?trip=oneway&leg1=from:${origin},to:${destination},departure:${departureDate}TANYT&passengers=adults:1,children:0,seniors:0,infantinlap:Y&mode=search`,
+        icon: '🌐'
+      }
+    ];
+  };
+
+  const bookingLinks = generateBookingLinks();
+  const airlineName = getAirlineName(firstSegment.carrierCode);
   
   return (
     <div style={{
@@ -187,8 +241,7 @@ function FlightCard({ flight }) {
       marginBottom: '15px',
       backgroundColor: 'white',
       boxShadow: '0 3px 8px rgba(0,0,0,0.08)',
-      transition: 'box-shadow 0.2s, border-color 0.2s',
-      cursor: 'pointer'
+      transition: 'box-shadow 0.2s, border-color 0.2s'
     }}
     onMouseEnter={(e) => {
       e.currentTarget.style.boxShadow = '0 5px 15px rgba(0,0,0,0.15)';
@@ -199,7 +252,7 @@ function FlightCard({ flight }) {
       e.currentTarget.style.borderColor = '#e0e0e0';
     }}
     >
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '15px' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: '15px' }}>
         <div style={{ flex: 1, minWidth: '250px' }}>
           <div style={{ fontSize: '20px', fontWeight: 'bold', marginBottom: '12px', color: '#1976d2' }}>
             {firstSegment.departure.iataCode} → {lastSegment.arrival.iataCode}
@@ -230,8 +283,58 @@ function FlightCard({ flight }) {
           <div style={{ color: '#555', marginBottom: '6px', fontSize: '14px' }}>
             <strong>Stops:</strong> {flight.itineraries[0].segments.length - 1 === 0 ? '✈️ Non-stop' : `🛬 ${flight.itineraries[0].segments.length - 1} stop(s)`}
           </div>
-          <div style={{ color: '#555', fontSize: '14px' }}>
-            <strong>Carrier:</strong> {firstSegment.carrierCode} {firstSegment.number}
+          <div style={{ color: '#555', marginBottom: '10px', fontSize: '14px' }}>
+            <strong>Airline:</strong> {airlineName} ({firstSegment.carrierCode} {firstSegment.number})
+          </div>
+
+          {/* Booking Links Section */}
+          <div style={{ 
+            marginTop: '15px', 
+            paddingTop: '15px', 
+            borderTop: '1px solid #e0e0e0' 
+          }}>
+            <div style={{ 
+              fontSize: '14px', 
+              fontWeight: 'bold', 
+              marginBottom: '10px', 
+              color: '#333' 
+            }}>
+              🎫 Book on These Platforms:
+            </div>
+            <div style={{ 
+              display: 'flex', 
+              flexWrap: 'wrap', 
+              gap: '8px' 
+            }}>
+              {bookingLinks.map((link, idx) => (
+                <a
+                  key={idx}
+                  href={link.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-block',
+                    padding: '8px 14px',
+                    backgroundColor: '#1976d2',
+                    color: 'white',
+                    textDecoration: 'none',
+                    borderRadius: '6px',
+                    fontSize: '13px',
+                    fontWeight: '500',
+                    transition: 'background-color 0.2s',
+                    cursor: 'pointer'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.backgroundColor = '#1565c0';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.backgroundColor = '#1976d2';
+                  }}
+                >
+                  {link.icon} {link.name}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
         <div style={{ 
